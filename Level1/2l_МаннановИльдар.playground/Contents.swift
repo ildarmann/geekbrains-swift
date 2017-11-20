@@ -2,7 +2,6 @@
 
 import UIKit
 
-var str = "Hello, playground"
 /*
  Формат файла ДР: «2l_ФИ.playground».
  1. Написать функцию, которая определяет четное число или нет.
@@ -26,40 +25,52 @@ var str = "Hello, playground"
  */
 
 //-------  1. Написать функцию, которая определяет четное число или нет. -------
+/**
+     Функция определяет поданное число четное или нет.
+ 
+     - Parameter number: Число на проверку.
+     - Returns: **true** - если число четное, иначе **false**.
+ */
 func isEven(number: Int) -> Bool {
     return number % 2 == 0
 }
 var num: Int = 1
-print("Exercise 1: Четное ли число '" + String(num) + "': " + String(isEven(number: num)) + "\n")
+print("Exercise 1: Четное ли число '\(num)': " + String(isEven(number: num)) + "\n")
 
 //-------  2. Написать функцию, которая определяет, делится ли число без остатка на 3. -------
+/**
+     Функция определяет поданное число делиться на 3 без остатка или нет.
+ 
+     - Parameter number: Число на проверку.
+     - Returns: **true** - если число делиться без остатка, иначе **false**.
+ */
 func isDevidedBy3(number: Int) -> Bool {
     return number % 3 == 0
 }
 num = 6
-print("Exercise 2: Делится ли число '" + String(num) + "' на 3 без остатка: " + String(isDevidedBy3(number: num)) + "\n")
+print("Exercise 2: Делится ли число '\(num)' на 3 без остатка: " + String(isDevidedBy3(number: num)) + "\n")
 
 
 //-------  3. Создать возрастающий массив из 100 чисел. -------
-var arr =  [Int]()
+var arr100 =  [Int]()
 for val in 1...100 {
-    arr.append(val)
+    arr100.append(val)
 }
-print("Exercise 3: Возрастающий массив из 100 чисел: " + arr.description + "\n")
+print("Exercise 3: Возрастающий массив из 100 чисел: " + arr100.description + "\n")
 
 
 //-------  4. Удалить из этого массива все четные числа и все числа, которые не делятся на 3. -------
 //--- variant 1. Собираем вспомогательный массив
 var arrFor4Ex = [Int]()
-for val in arr {
+for val in arr100 {
     if !isEven(number: val) && isDevidedBy3(number: val) {
         arrFor4Ex.append(val)
     }
 }
 print(arrFor4Ex)
 
-//--- variant 2. Идем по обратному массиву чтобы индекс не менялся при удалении
-arrFor4Ex = arr
+//--- variant 2. Идем по массиву в обратном порядке, чтобы индекс не менялся при удалении
+arrFor4Ex = arr100
 for index in (0...arrFor4Ex.count-1).reversed() {
     if isEven(number: arrFor4Ex[index]) || !isDevidedBy3(number: arrFor4Ex[index]) {
         arrFor4Ex.remove(at: index)
@@ -68,7 +79,7 @@ for index in (0...arrFor4Ex.count-1).reversed() {
 print(arrFor4Ex)
 
 //--- variant 3. Используем closure
-arrFor4Ex = arr.filter { !isEven(number: $0) && isDevidedBy3(number: $0) }
+arrFor4Ex = arr100.filter { !isEven(number: $0) && isDevidedBy3(number: $0) }
 print(arrFor4Ex)
 print("Exercise 4: Массив без четных чисел и чисел, которые не делятся на 3 : " + arrFor4Ex.description + "\n")
 
@@ -76,27 +87,56 @@ print("Exercise 4: Массив без четных чисел и чисел, к
  Написать функцию, которая добавляет в массив новое число Фибоначчи и добавить при помощи нее 100 элементов:
     Числа Фибоначчи определяются соотношениями Fn=Fn-1 + Fn-2.
  */
-func addNextFibonacсi(_ fibArr: inout [Decimal]) {
-    //проверка, что в массиве есть как минимум 2 числа
-    guard fibArr.count >= 2 else {
-        return
+
+/**
+    Функция по формированию запрошенного кол-ва чисел Фибоначчи от 0, 1 по порядку.
+ 
+    ## Важно ##
+    1. Тип параметра count: **Int** .
+    2. Кол-во желаемых элементов должно быть не *меньше 2*.
+    3. На выходе функция отдает массив чисел по типу **Decimal**.
+ 
+    - Parameter count: Кол-во запрашиваемых чисел.
+    - Returns: Заполненный массив с запрошенным кол-вом чисел по типу Decimal.
+ */
+func getFibonacci(count: Int) -> [Decimal]{
+    guard count >= 2 else { //кол-во желаемых элементов должно быть не меньше 2
+        return []
     }
     
-    let arrLastIndex = fibArr.count - 1
-    fibArr.append(fibArr[arrLastIndex] + fibArr[arrLastIndex - 1])
+    /**
+     Запрошенная в задании функция, которая добавляет в массив новое число Фибоначчи.
+     
+     ## Важно ##
+     1. Тип параметра: **[Decimal]**.
+     2. Параметр передается по ссылке!
+     
+     - Parameter fibArr: Массив чисел Фибоначчи.
+     */
+    func addNextFibonacсi(_ fibArr: inout [Decimal]) {
+        //проверка, что в массиве есть как минимум 2 числа
+        guard fibArr.count >= 2 else {
+            return
+        }
+        
+        let arrLastIndex = fibArr.count - 1
+        fibArr.append(fibArr[arrLastIndex] + fibArr[arrLastIndex - 1])
+    }
+    
+    var fibonacciArr: [Decimal] = [0, 1];
+    while fibonacciArr.count < count {
+        addNextFibonacсi(&fibonacciArr)
+    }
+
+    return fibonacciArr
 }
 
-var fibonacciArr: [Decimal] = [0, 1];
-for _ in 1...100 {
-    addNextFibonacсi(&fibonacciArr)
-}
-print("Exercise 5: Первые 100 чисел Фибоначчи: \(fibonacciArr)\n")
+let fibonaccies = getFibonacci(count: 100)
+print("Exercise 5: Первые 100 чисел Фибоначчи: \(fibonaccies)\n")
+
 
 /*-------  6. * -------
-    Заполнить массив из 100 элементов различными простыми числами. Натуральное число,
-    большее единицы, называется простым, если оно делится только на себя и на единицу. Для
-    нахождения всех простых чисел, не больше заданного числа n, следуя методу Эратосфена,
-    нужно выполнить следующие шаги:
+    Заполнить массив из 100 элементов различными простыми числами. Натуральное число, большее единицы, называется простым, если оно делится только на себя и на единицу. Для нахождения всех простых чисел, не больше заданного числа n, следуя методу Эратосфена, нужно выполнить следующие шаги:
         a. Выписать подряд все целые числа от двух до n (2, 3, 4, ..., n).
         b. Пусть переменная p изначально равна двум — первому простому числу.
         c. Зачеркнуть в списке числа от 2p до n, считая шагами по p (это будут числа кратные p:
@@ -105,24 +145,48 @@ print("Exercise 5: Первые 100 чисел Фибоначчи: \(fibonacciAr
             переменной p это число
         e. Повторять шаги c и d, пока возможно.
 */
-func isPrime(_ num: Int) -> Bool{
-    //let dev1 = num < 10 ? num + 1 : 2
-    let dev1 = 2
-    for devider in dev1...9 {
-        if num % devider == 0 {
-            return false
-        }
+
+/**
+     Функция по формированию запрошенного кол-ва простых чисел начиная от 2 по порядку.
+     Функция написана по методу Эратосфена.
+ 
+     ## Важно ##
+     1. Тип параметра count: **Int** .
+     2. Параметр должен быть *> 0*.
+ 
+     - Parameter count: Кол-во запрашиваемых чисел.
+     - Returns: Заполненный массив с запрошенным кол-вом чисел по типу Int.
+ */
+func getPrimes(count: Int) -> [Int] {
+    guard count > 0 else { //кол-во желаемых элементов должно быть больше 0
+        return []
     }
-    return true
+    
+    var primes: [Int] = [Int]()
+    var number: Int = 2
+    while primes.count < count { // будем работать пока массив не наполнится запрошенным кол-вом простых чисел
+        var isPrime: Bool = true
+        if primes.isEmpty && number == 2 { // начало наполнения массива простых чисел
+            isPrime = true
+        } else {
+            for devider in primes { // Проверяем текущее число на делимость без остатка на ранее найденные простые числа, если хотя бы одно из них делит число целочисленно без остатка - это не простое число
+                
+                 if Int(sqrt(Double(number))) < devider  {    // Облегчаем обход на проверку числа на делимость без остатка на ранее найденные простые числа. Согласно ибн ал-Банна, достаточно проверить делимость только до sqrt(n).
+                    break
+                 } else if number % devider == 0 {
+                    isPrime = false
+                    break
+                }
+            }
+        }
+        
+        if isPrime {
+            primes.append(number)
+        }
+        number += 1
+    }
+    return primes
 }
 
-var primes: [Int] = [Int]()
-var number: Int = 2
-while primes.count < 100 {
-    print(number)
-    if isPrime(number) {
-        primes.append(number)
-    }
-    number += 1
-}
+let primes: [Int] = getPrimes(count: 100)
 print("Exercise 6: Первые 100 простых чисел: \(primes)")
