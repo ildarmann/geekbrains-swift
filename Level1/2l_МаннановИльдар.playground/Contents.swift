@@ -163,17 +163,19 @@ func getPrimes(count: Int) -> [Int] {
     }
     
     var primes: [Int] = [Int]()
+    primes.reserveCapacity(count + 10)
     var number: Int = 2
     while primes.count < count { // будем работать пока массив не наполнится запрошенным кол-вом простых чисел
         var isPrime: Bool = true
         if primes.isEmpty && number == 2 { // начало наполнения массива простых чисел
             isPrime = true
         } else {
+            let numScrt = Int(sqrt(Double(number)))
             for devider in primes { // Проверяем текущее число на делимость без остатка на ранее найденные простые числа, если хотя бы одно из них делит число целочисленно без остатка - это не простое число
                 
-                 if Int(sqrt(Double(number))) < devider  {    // Облегчаем обход на проверку числа на делимость без остатка на ранее найденные простые числа. Согласно ибн ал-Банна, достаточно проверить делимость только до sqrt(n).
+                if numScrt < devider  {    // Облегчаем обход на проверку числа на делимость без остатка на ранее найденные простые числа. Согласно ибн ал-Банна, достаточно проверить делимость только до sqrt(n).
                     break
-                 } else if number % devider == 0 {
+                } else if number % devider == 0 {
                     isPrime = false
                     break
                 }
