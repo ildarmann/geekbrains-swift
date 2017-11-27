@@ -53,23 +53,18 @@ class Car {
     // Открыты ли окна
     var isWindowsOpened: Bool = false
     
-    init(model: String
-    // Цвет
-    let color: String
-    // Год выпуска
-    let yearOfManufacture: Int
-    // Текущая скорость
-    var speed: Int
-    // Запущен ли двигатель
-    var isEngineStarted: Bool
-    isWindowsOpened: Bool) {
+    init(model: String, color: String, yearOfManufacture: Int, speed: Int, isEngineStarted: Bool, isWindowsOpened: Bool) {
+        self.model = model
+        self.color = color
+        self.yearOfManufacture = yearOfManufacture
+        self.speed = speed
+        self.isEngineStarted = isEngineStarted
+        self.isWindowsOpened = isWindowsOpened
+        
     }
     
-    init() {
-        model = "F40"
-        color = "Красный"
-        yearOfManufacture = 1992
-        speed = 0
+    convenience init(model: String, color: String, yearOfManufacture: Int) {
+        self.init(model: model, color: color, yearOfManufacture: yearOfManufacture, speed: 0, isEngineStarted: false, isWindowsOpened: false)
     }
     
     func doAction(action: CarAction) throws {
@@ -106,21 +101,60 @@ class Car {
             return // действия со спойлером в данном классе не определены
         }
     }
+    
+    func descr() -> String {
+        let result: String =
+            "Марка = \(model), " +
+            "Цвет = \(color), " +
+            "Год выпуска = \(yearOfManufacture), " +
+            "Заведена? = \(isEngineStarted), " +
+            "Окна открыты = \(isWindowsOpened), " +
+            "Скорость = \(speed)"
+        return result
+    }
 }
 
 
 class SportCar: Car {
     // Спойлер поднят?
-    var isSpoilerRaised: Bool
+    var isSpoilerRaised: Bool = false
+    
+    init(model: String, color: String, yearOfManufacture: Int) {
+        //self.isSpoilerRaised = isSpoilerRaised
+        super.init(model: model, color: color, yearOfManufacture: yearOfManufacture, speed: 0, isEngineStarted: false, isWindowsOpened: false)
+    }
+    override func doAction(action: CarAction) throws {
+        try super.doAction(action: action)
+        
+        switch action {
+        case .raiseSpoiler:
+            self.isSpoilerRaised = true
+        case .lowerSpoiler:
+            self.isSpoilerRaised = false
+        default:
+            return
+        }
+    }
+    
+    override func descr() -> String {
+        return super.descr() + ", Спойлер поднят? = \(isSpoilerRaised) "
+    }
 }
 
 class TrunkCar: Car {
     // Объем багажника
     let trunkVolume: Int
     // Заполненный объем багажника
-    var filledTrunkVolume: Int
+    var filledTrunkVolume: Int = 0
     // Имеется ли прицеп
     let hasTrailer: Bool
+    
+    init(model: String, color: String, yearOfManufacture: Int, trunkVolume: Int, hasTrailer: Bool) {
+        //self.isSpoilerRaised = isSpoilerRaised
+        self.trunkVolume = trunkVolume
+        self.hasTrailer = hasTrailer
+        super.init(model: model, color: color, yearOfManufacture: yearOfManufacture, speed: 0, isEngineStarted: false, isWindowsOpened: false)
+    }
     
     /**
      Загрузить/выгрузить багажник.
@@ -131,23 +165,54 @@ class TrunkCar: Car {
      - Parameter action: Вид действия направленное на багажник
      - Returns: **true**, если операция прошла успешно; **false**, если загружаемый объем не влезает
      */
-    mutating func doTrunkAction(action: СargoAction) throws -> Bool {
+    func doTrunkAction(action: CarAction) throws -> Bool {
         switch action {
-        case  let .load(volume):
+        case  let .cargoLoad(volume):
             guard (filledTrunkVolume + volume) <= trunkVolume  else {
                 return false // Операцию выполнить не возможно, загружаемый объем не влезет
             }
             self.filledTrunkVolume += volume
-        case let .unload(volume):
+        case let .cargoUnload(volume):
             guard (filledTrunkVolume - volume) <= 0  else {
                 throw CustomError.somethingWentWrong(message: "Ошибка! Выгружаемый объем не может быть больше, чем сейчас лежит в багажнике")
             }
             self.filledTrunkVolume -= volume
+        case .engeneStart:
+            fallthrough
+        case .engeneStop:
+            fallthrough
+        case .windowsOpen:
+            fallthrough
+        case .windowsClose:
+            fallthrough
+        case .raiseSpoiler:
+            fallthrough
+        case .lowerSpoiler:
+            return false
         }
         return true
     }
 
     
+    override func descr() -> String {
+        return super.descr() +
+        ", Объем багажника = \(trunkVolume), " +
+        "Заполненный объем багажника = \(filledTrunkVolume), " +
+        "Имеется ли прицеп =  \(hasTrailer), "
+    }
+    
 }
 
-var myFerrari: SportCar = SportCar()
+var myFerrari: SportCar = SportCar(model: "Ferrari F40", color: "Красный", yearOfManufacture: 1992)
+print("Мой Ferrari: '\(myFerrari.descr())'")
+try myFerrari.doAction(action: .engeneStart)
+try myFerrari.doAction(action: .windowsOpen)
+try myFerrari.doAction(action: .raiseSpoiler)
+myFerrari.speed = 200
+print("Мой Ferrari едет: '\(myFerrari.descr())'")
+myFerrari.isEngineStarted = false
+print("Мой Ferrari заглушен: '\(myFerrari.descr())'")
+
+
+var myPickup: TrunkCar = TrunkCar(model: "Ford Expedotor", color: "Черный", yearOfManufacture: 2003, trunkVolume: 100, hasTrailer: false)
+print("myPickup: '\(myPickup.descr())'")
