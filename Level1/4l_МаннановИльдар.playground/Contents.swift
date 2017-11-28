@@ -17,7 +17,7 @@ var str = "Hello, playground"
 enum CarAction {
     
     // Действия с двигателем
-    case engeneStart, engeneStop
+    case engineStart, engineStop
     // Действия с окном
     case windowsOpen, windowsClose
     //Действия с грузом.
@@ -44,9 +44,9 @@ class Car {
     var speed: Int
     // Запущен ли двигатель
     var isEngineStarted: Bool = false {
-        willSet {
-            if !isEngineStarted {
-                speed = 0 // Если двигатель заглох - останавливаем машину
+        willSet(newValue) {
+            if !newValue {
+                self.doWhenEngineStopped()
             }
         }
     }
@@ -69,12 +69,12 @@ class Car {
     
     func doAction(action: CarAction) throws {
         switch action {
-        case  .engeneStart:
+        case  .engineStart:
             guard !isEngineStarted else {
                 throw CustomError.somethingWentWrong(message: "Ошибка! Двигатель уже запущен")
             }
             self.isEngineStarted = true // запустим двигатель
-        case .engeneStop:
+        case .engineStop:
             guard isEngineStarted else {
                 return // Двигатель уже заглушен, игнорируем.
             }
@@ -91,15 +91,17 @@ class Car {
                 return // Окна уже закрыты, игнорируем.
             }
             self.isWindowsOpened = false
-        case .cargoLoad:
-            fallthrough
-        case .cargoUnload:
+        case .cargoLoad, .cargoUnload:
             return // работа с грузом в данном классе не определена.
-        case .raiseSpoiler:
-            fallthrough
-        case .lowerSpoiler:
+        case .raiseSpoiler, .lowerSpoiler:
             return // действия со спойлером в данном классе не определены
         }
+    }
+    
+    // если двигатель заглох - предпринимаем доп действия
+    func doWhenEngineStopped() {
+        speed = 0 // Если двигатель заглох - останавливаем машину
+        isWindowsOpened = false // Закрываем окна
     }
     
     func descr() -> String {
@@ -131,9 +133,17 @@ class SportCar: Car {
             self.isSpoilerRaised = true
         case .lowerSpoiler:
             self.isSpoilerRaised = false
+        case .cargoLoad(let volume), .cargoUnload(let volume):
+            throw CustomError.somethingWentWrong(message: "Ошибка! В спорткаре груз класть некуда.")
         default:
             return
         }
+    }
+    
+    // Этот метод нам нужен для выполненеия действий для данного объекта при событии "двигатель заглушен" в свойстве родительского класса
+    override func doWhenEngineStopped() {
+        super.doWhenEngineStopped()
+        isSpoilerRaised = false
     }
     
     override func descr() -> String {
@@ -150,7 +160,6 @@ class TrunkCar: Car {
     let hasTrailer: Bool
     
     init(model: String, color: String, yearOfManufacture: Int, trunkVolume: Int, hasTrailer: Bool) {
-        //self.isSpoilerRaised = isSpoilerRaised
         self.trunkVolume = trunkVolume
         self.hasTrailer = hasTrailer
         super.init(model: model, color: color, yearOfManufacture: yearOfManufacture, speed: 0, isEngineStarted: false, isWindowsOpened: false)
@@ -163,34 +172,23 @@ class TrunkCar: Car {
      2. Если выгружаемый объем будет больше чем сейчас лежит в багажнике - будет ошибка
      
      - Parameter action: Вид действия направленное на багажник
-     - Returns: **true**, если операция прошла успешно; **false**, если загружаемый объем не влезает
      */
-    func doTrunkAction(action: CarAction) throws -> Bool {
+    override func doAction(action: CarAction) throws {
+        try super.doAction(action: action)
         switch action {
         case  let .cargoLoad(volume):
             guard (filledTrunkVolume + volume) <= trunkVolume  else {
-                return false // Операцию выполнить не возможно, загружаемый объем не влезет
+                return // Операцию выполнить не возможно, загружаемый объем не влезет
             }
             self.filledTrunkVolume += volume
         case let .cargoUnload(volume):
-            guard (filledTrunkVolume - volume) <= 0  else {
+            guard (filledTrunkVolume - volume) >= 0  else {
                 throw CustomError.somethingWentWrong(message: "Ошибка! Выгружаемый объем не может быть больше, чем сейчас лежит в багажнике")
             }
             self.filledTrunkVolume -= volume
-        case .engeneStart:
-            fallthrough
-        case .engeneStop:
-            fallthrough
-        case .windowsOpen:
-            fallthrough
-        case .windowsClose:
-            fallthrough
-        case .raiseSpoiler:
-            fallthrough
-        case .lowerSpoiler:
-            return false
+        default:
+            return
         }
-        return true
     }
 
     
@@ -205,14 +203,26 @@ class TrunkCar: Car {
 
 var myFerrari: SportCar = SportCar(model: "Ferrari F40", color: "Красный", yearOfManufacture: 1992)
 print("Мой Ferrari: '\(myFerrari.descr())'")
-try myFerrari.doAction(action: .engeneStart)
+var porche: SportCar = SportCar(model: "Porche 911", color: "Синий", yearOfManufacture: 2017)
+print("Новый Porche: '\(porche.descr())'")
+
+try myFerrari.doAction(action: .engineStart)
 try myFerrari.doAction(action: .windowsOpen)
 try myFerrari.doAction(action: .raiseSpoiler)
 myFerrari.speed = 200
 print("Мой Ferrari едет: '\(myFerrari.descr())'")
-myFerrari.isEngineStarted = false
+try myFerrari.doAction(action: .engineStop)
 print("Мой Ferrari заглушен: '\(myFerrari.descr())'")
+
+//try! porche.doAction(action: .cargoLoad(volume: 10)) // ERROR, на порше груз возить не можем
+try porche.doAction(action: .raiseSpoiler)
+print("У Porche красивый спойлер: '\(porche.descr())'\n")
 
 
 var myPickup: TrunkCar = TrunkCar(model: "Ford Expedotor", color: "Черный", yearOfManufacture: 2003, trunkVolume: 100, hasTrailer: false)
-print("myPickup: '\(myPickup.descr())'")
+print("Мой Пикап: '\(myPickup.descr())'")
+try myPickup.doAction(action: .engineStart)
+try myPickup.doAction(action: .cargoLoad(volume: 50))
+print("В Пикап загружен груз: '\(myPickup.descr())'")
+try! myPickup.doAction(action: .cargoUnload(volume: 75))
+print("В Пикап разгружен: '\(myPickup.descr())'")
