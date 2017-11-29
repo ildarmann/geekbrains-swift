@@ -2,8 +2,6 @@
 
 import UIKit
 
-var str = "Hello, playground"
-
 /*
  1. Описать класс Car c общими свойствами автомобилей и пустым методом действия. По аналогии с прошлым заданием.
  2. Описать пару его наследников trunkCar и sportСar. Подумать какими отличающимися свойствами обладают эти автомобили. Описать в каждом наследнике специфичные для него свойства.
@@ -114,10 +112,14 @@ class Car {
             "Скорость = \(speed)"
         return result
     }
+    
+    deinit {
+        print("\(model) удаляется из памяти!")
+    }
 }
 
 
-class SportCar: Car {
+final class SportCar: Car {
     // Спойлер поднят?
     var isSpoilerRaised: Bool = false
     
@@ -133,14 +135,14 @@ class SportCar: Car {
             self.isSpoilerRaised = true
         case .lowerSpoiler:
             self.isSpoilerRaised = false
-        case .cargoLoad(let volume), .cargoUnload(let volume):
+        case .cargoLoad(_), .cargoUnload(_):
             throw CustomError.somethingWentWrong(message: "Ошибка! В спорткаре груз класть некуда.")
         default:
             return
         }
     }
     
-    // Этот метод нам нужен для выполненеия действий для данного объекта при событии "двигатель заглушен" в свойстве родительского класса
+    // Этот метод нам нужен для выполненеия действий для данного объекта при событии "двигатель заглушен" у свойстве родительского класса
     override func doWhenEngineStopped() {
         super.doWhenEngineStopped()
         isSpoilerRaised = false
@@ -149,9 +151,10 @@ class SportCar: Car {
     override func descr() -> String {
         return super.descr() + ", Спойлер поднят? = \(isSpoilerRaised) "
     }
+    
 }
 
-class TrunkCar: Car {
+final class TrunkCar: Car {
     // Объем багажника
     let trunkVolume: Int
     // Заполненный объем багажника
@@ -203,8 +206,8 @@ class TrunkCar: Car {
 
 var myFerrari: SportCar = SportCar(model: "Ferrari F40", color: "Красный", yearOfManufacture: 1992)
 print("Мой Ferrari: '\(myFerrari.descr())'")
-var porche: SportCar = SportCar(model: "Porche 911", color: "Синий", yearOfManufacture: 2017)
-print("Новый Porche: '\(porche.descr())'")
+var porche: SportCar? = SportCar(model: "Porche 911", color: "Синий", yearOfManufacture: 2017)
+print("Новый Porche: '\(porche!.descr())'")
 
 try myFerrari.doAction(action: .engineStart)
 try myFerrari.doAction(action: .windowsOpen)
@@ -215,14 +218,16 @@ try myFerrari.doAction(action: .engineStop)
 print("Мой Ferrari заглушен: '\(myFerrari.descr())'")
 
 //try! porche.doAction(action: .cargoLoad(volume: 10)) // ERROR, на порше груз возить не можем
-try porche.doAction(action: .raiseSpoiler)
-print("У Porche красивый спойлер: '\(porche.descr())'\n")
+try porche!.doAction(action: .raiseSpoiler)
+print("У Porche красивый спойлер: '\(porche!.descr())'")
+porche = nil
+print("\n")
 
-
-var myPickup: TrunkCar = TrunkCar(model: "Ford Expedotor", color: "Черный", yearOfManufacture: 2003, trunkVolume: 100, hasTrailer: false)
+var myPickup: TrunkCar = TrunkCar(model: "Ford Expeditor", color: "Черный", yearOfManufacture: 2003, trunkVolume: 100, hasTrailer: false)
 print("Мой Пикап: '\(myPickup.descr())'")
 try myPickup.doAction(action: .engineStart)
 try myPickup.doAction(action: .cargoLoad(volume: 50))
 print("В Пикап загружен груз: '\(myPickup.descr())'")
 try! myPickup.doAction(action: .cargoUnload(volume: 75))
 print("В Пикап разгружен: '\(myPickup.descr())'")
+
