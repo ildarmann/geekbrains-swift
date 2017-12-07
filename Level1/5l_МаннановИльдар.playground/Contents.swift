@@ -39,11 +39,11 @@ protocol Car {
     // Год выпуска
     var yearOfManufacture: Int {get}
     // Текущая скорость
-    var speed: Int {get}
+    var speed: Int {get set}
     // Запущен ли двигатель
-    var isEngineStarted: Bool {get}
+    var isEngineStarted: Bool {get set}
     // Открыты ли окна
-    var isWindowsOpened: Bool  {get}
+    var isWindowsOpened: Bool  {get set}
     
     // Выполнить действие над автомобилем
     func doAction(action: CarAction) throws
@@ -60,19 +60,19 @@ extension Car {
 //    }
     
 
-    func openWindows(){
-        isWindowsOpened = true
+    func openWindows() throws {
+        try doAction(action: .windowsOpen)
     }
     
-    func closeWindows() {
-        isWindowsOpened = false
+    func closeWindows() throws {
+        try doAction(action: .windowsClose)
     }
     
-    func engineStart(){
-        isEngineStarted = true
+    func engineStart() throws {
+        try doAction(action: .engineStart)
     }
-    func engineStop() {
-        isEngineStarted = false
+    func engineStop() throws {
+        try doAction(action: .engineStop)
     }
     
 
