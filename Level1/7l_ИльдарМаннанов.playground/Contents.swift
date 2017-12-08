@@ -26,11 +26,11 @@ class StrangeCalculator {
     }
     
     /// Обрабатываем непоправимую ошибку в методе при помощи try/catch
-    func subtract (_ a: Int, _ b: Int)  -> Int {
+    func subtract (_ a: Int, _ b: Int)  -> Int? {
         do {
-            try stupidCondition(a, b)
+            try checkStupidCondition(a, b)
         } catch  {
-            return Int.min // Поймали ошибку, потому что параметры соответствуют дурацкому условию - возврадаем в качестве результата минимальное возможное Int
+            return nil // Поймали ошибку, потому что параметры соответствуют дурацкому условию - возвращаем в качестве результата nil
         }
         return a - b
     }
@@ -45,11 +45,14 @@ class StrangeCalculator {
         return Double (dividend) / Double(divider)
     }
     
-    func mult() {
-        
+    /// Возвращаем ошибку
+    func mult(_ a: Int, _ b: Int) throws -> Int  {
+        throw CalcError.somethingWentWrong(message: "Извините но метод не реализован)")
     }
     
-    func stupidCondition(_ a: Int, _ b: Int) throws -> Bool {
+    
+    /// Вспомогательный метод
+    private func checkStupidCondition(_ a: Int, _ b: Int) throws -> Bool {
         guard (a + b) % 2 == 0 else {
             throw CalcError.somethingWentWrong(message: "Операнды не удовлетворяют моему условию")
         }
@@ -61,7 +64,7 @@ class StrangeCalculator {
 
 
 
-
+//=================================================
 let calc = StrangeCalculator()
 
 do {
@@ -77,7 +80,13 @@ print("Результат вычитания: \(calc.subtract(3, 2))\n")
 do {
     try print(calc.divide(3, 0))
 } catch CalcError.divideByZero {
-    print("Ошибка! Деление на ноль.")
+    print("Ошибка! Деление на ноль.\n")
+}
+
+do {
+    try print(calc.mult(3, 3))
+} catch   {
+    print("Ошибка при умножении: \(error)\n")
 }
 
 
