@@ -8,26 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		5239BE8E1FDDAE6300D5FBC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE8D1FDDAE6300D5FBC4 /* AppDelegate.swift */; };
-		5239BE901FDDAE6300D5FBC4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5239BE8F1FDDAE6300D5FBC4 /* GameScene.sks */; };
-		5239BE921FDDAE6300D5FBC4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5239BE911FDDAE6300D5FBC4 /* Actions.sks */; };
 		5239BE941FDDAE6300D5FBC4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE931FDDAE6300D5FBC4 /* GameScene.swift */; };
 		5239BE961FDDAE6300D5FBC4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE951FDDAE6300D5FBC4 /* GameViewController.swift */; };
 		5239BE991FDDAE6300D5FBC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5239BE971FDDAE6300D5FBC4 /* Main.storyboard */; };
 		5239BE9B1FDDAE6300D5FBC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5239BE9A1FDDAE6300D5FBC4 /* Assets.xcassets */; };
 		5239BE9E1FDDAE6300D5FBC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5239BE9C1FDDAE6300D5FBC4 /* LaunchScreen.storyboard */; };
+		5239BEA61FDDC63500D5FBC4 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BEA51FDDC63500D5FBC4 /* Apple.swift */; };
+		5239BEA81FDDC72B00D5FBC4 /* SnakeBodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BEA71FDDC72B00D5FBC4 /* SnakeBodyPart.swift */; };
+		5239BEAA1FDDC75F00D5FBC4 /* SnakeHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BEA91FDDC75F00D5FBC4 /* SnakeHead.swift */; };
+		5239BEAC1FDDC78600D5FBC4 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BEAB1FDDC78600D5FBC4 /* Snake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5239BE8A1FDDAE6300D5FBC4 /* less8Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = less8Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5239BE8D1FDDAE6300D5FBC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5239BE8F1FDDAE6300D5FBC4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		5239BE911FDDAE6300D5FBC4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		5239BE931FDDAE6300D5FBC4 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5239BE951FDDAE6300D5FBC4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5239BE981FDDAE6300D5FBC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5239BE9A1FDDAE6300D5FBC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5239BE9D1FDDAE6300D5FBC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5239BE9F1FDDAE6300D5FBC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5239BEA51FDDC63500D5FBC4 /* Apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apple.swift; sourceTree = "<group>"; };
+		5239BEA71FDDC72B00D5FBC4 /* SnakeBodyPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeBodyPart.swift; sourceTree = "<group>"; };
+		5239BEA91FDDC75F00D5FBC4 /* SnakeHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeHead.swift; sourceTree = "<group>"; };
+		5239BEAB1FDDC78600D5FBC4 /* Snake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +65,16 @@
 			isa = PBXGroup;
 			children = (
 				5239BE8D1FDDAE6300D5FBC4 /* AppDelegate.swift */,
-				5239BE8F1FDDAE6300D5FBC4 /* GameScene.sks */,
-				5239BE911FDDAE6300D5FBC4 /* Actions.sks */,
 				5239BE931FDDAE6300D5FBC4 /* GameScene.swift */,
+				5239BEA51FDDC63500D5FBC4 /* Apple.swift */,
 				5239BE951FDDAE6300D5FBC4 /* GameViewController.swift */,
 				5239BE971FDDAE6300D5FBC4 /* Main.storyboard */,
 				5239BE9A1FDDAE6300D5FBC4 /* Assets.xcassets */,
 				5239BE9C1FDDAE6300D5FBC4 /* LaunchScreen.storyboard */,
 				5239BE9F1FDDAE6300D5FBC4 /* Info.plist */,
+				5239BEA71FDDC72B00D5FBC4 /* SnakeBodyPart.swift */,
+				5239BEA91FDDC75F00D5FBC4 /* SnakeHead.swift */,
+				5239BEAB1FDDC78600D5FBC4 /* Snake.swift */,
 			);
 			path = less8Game;
 			sourceTree = "<group>";
@@ -133,10 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5239BE991FDDAE6300D5FBC4 /* Main.storyboard in Resources */,
-				5239BE901FDDAE6300D5FBC4 /* GameScene.sks in Resources */,
 				5239BE9B1FDDAE6300D5FBC4 /* Assets.xcassets in Resources */,
 				5239BE9E1FDDAE6300D5FBC4 /* LaunchScreen.storyboard in Resources */,
-				5239BE921FDDAE6300D5FBC4 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,8 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5239BEAA1FDDC75F00D5FBC4 /* SnakeHead.swift in Sources */,
+				5239BEA61FDDC63500D5FBC4 /* Apple.swift in Sources */,
 				5239BE941FDDAE6300D5FBC4 /* GameScene.swift in Sources */,
 				5239BE961FDDAE6300D5FBC4 /* GameViewController.swift in Sources */,
+				5239BEA81FDDC72B00D5FBC4 /* SnakeBodyPart.swift in Sources */,
+				5239BEAC1FDDC78600D5FBC4 /* Snake.swift in Sources */,
 				5239BE8E1FDDAE6300D5FBC4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
