@@ -63,6 +63,34 @@ class LoginFormController: UIViewController {
             object : nil)
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let authChecked = checkAuth(loginTextField.text!, passwordTextField.text!)
+        if  !authChecked {
+            showError()
+        }
+        
+        return authChecked
+    }
+    
+    func checkAuth(_ login:String, _ password: String) -> Bool {
+        if login == MY_LOGIN && password == MY_PASSOWRD {
+            return true
+        }else {
+            return false
+        }
+    }
+    
+    func showError() {
+        //Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
+        //Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        //Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        //показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+    
     //когда клавиатура исчезает
     @objc func keyboardWillBeHidden ( notification : Notification ) {
         // устанавливаем отступ внизу UIScrollView равный 0
@@ -79,7 +107,7 @@ class LoginFormController: UIViewController {
     
 
     @IBAction func doLogin(_ sender: Any) {
-        if loginTextField.text! == MY_LOGIN  && passwordTextField.text! == MY_PASSOWRD {
+        if checkAuth(loginTextField.text!, passwordTextField.text!) {
             print("успешная авторизация: \(loginTextField.text!)")
         }else {
             print("неуспешная авторизация: \(loginTextField.text!)")
