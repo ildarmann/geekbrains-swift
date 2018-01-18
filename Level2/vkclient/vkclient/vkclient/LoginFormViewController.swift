@@ -20,11 +20,24 @@ class LoginFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // жест нажатия
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action:  #selector(self.hideKeyboard))
+        // присваиваем его UIScrollVIew
+        scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard checkAuth() else { // аутентификация не прошла - показваем ошибку
+            showLoginError();
+            return false
+        }  
+        return true
     }
 
     
@@ -38,6 +51,17 @@ class LoginFormViewController: UIViewController {
         }
     }
     
+    func showLoginError()  {
+        //Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные   пользователя", preferredStyle: .alert)
+        //Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        //Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        //показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+    
     @IBAction func loginPressed(_ sender: Any) {
         if checkAuth() {
             print("auth good")
@@ -46,6 +70,12 @@ class LoginFormViewController: UIViewController {
         }
     }
     
+    
+    
+    
+    @objc func hideKeyboard() {
+        self.scrollView?.endEditing(true)
+    }
     
 }
 
