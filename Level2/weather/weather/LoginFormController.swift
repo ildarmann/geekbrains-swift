@@ -36,10 +36,10 @@ class LoginFormController: UIViewController {
     override func viewWillAppear ( _ animated : Bool ) {
         super . viewWillAppear ( animated )
         // Подписываемся на два уведомления, одно приходит при появлении клавиатуры
-        NotificationCenter . default . addObserver ( self , selector : #selector(self.keyboardWasShown), name:
+        NotificationCenter.default.addObserver( self , selector : #selector(self.keyboardWasShown), name:
             NSNotification.Name.UIKeyboardWillShow, object: nil)
         // Второе когда она пропадает
-        NotificationCenter . default . addObserver ( self , selector :
+        NotificationCenter.default.addObserver( self , selector :
             #selector(self.keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide,
                                                                  object: nil)
     }
@@ -53,42 +53,6 @@ class LoginFormController: UIViewController {
         // добавляем отступ внизу UIScrollView равный размеру клавиатуры
         self . scrollView?.contentInset = contentInsets
         scrollView?.scrollIndicatorInsets = contentInsets
-    }
-    
-    override func viewWillDisappear ( _ animated : Bool ) {
-        super . viewWillDisappear ( animated)
-        NotificationCenter . default . removeObserver ( self , name : NSNotification . Name . UIKeyboardWillShow ,
-                                                        object : nil)
-        NotificationCenter.default.removeObserver( self, name: NSNotification.Name.UIKeyboardWillHide,
-            object : nil)
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        let authChecked = checkAuth(loginTextField.text!, passwordTextField.text!)
-        if  !authChecked {
-            showError()
-        }
-        
-        return authChecked
-    }
-    
-    func checkAuth(_ login:String, _ password: String) -> Bool {
-        if login == MY_LOGIN && password == MY_PASSOWRD {
-            return true
-        }else {
-            return false
-        }
-    }
-    
-    func showError() {
-        //Создаем контроллер
-        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
-        //Создаем кнопку для UIAlertController
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        //Добавляем кнопку на UIAlertController
-        alter.addAction(action)
-        //показываем UIAlertController
-        present(alter, animated: true, completion: nil)
     }
     
     //когда клавиатура исчезает
@@ -105,7 +69,48 @@ class LoginFormController: UIViewController {
     }
     
     
-
+    override func viewWillDisappear ( _ animated : Bool ) {
+        super . viewWillDisappear ( animated)
+        
+        // убираем подписку на уведомления
+        NotificationCenter . default . removeObserver ( self , name : NSNotification . Name . UIKeyboardWillShow ,
+                                                        object : nil)
+        NotificationCenter.default.removeObserver( self, name: NSNotification.Name.UIKeyboardWillHide,
+            object : nil)
+    }
+    
+    // методя вызывается при segue для проверки аунтефицированности пользователя
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let authChecked = checkAuth(loginTextField.text!, passwordTextField.text!)
+        if  !authChecked {
+            showLoginError()
+        }
+        
+        return authChecked
+    }
+    
+    // Проверка аутентификации
+    func checkAuth(_ login:String, _ password: String) -> Bool {
+        if login == MY_LOGIN && password == MY_PASSOWRD {
+            return true
+        }else {
+            return false
+        }
+    }
+    
+    // Показать popap с ошибкой ввода логина/пароля
+    func showLoginError() {
+        //Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
+        //Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        //Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        //показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+    
+    // Кнопка login нажата
     @IBAction func doLogin(_ sender: Any) {
         if checkAuth(loginTextField.text!, passwordTextField.text!) {
             print("успешная авторизация: \(loginTextField.text!)")
