@@ -52,13 +52,7 @@ class LoginFormController: UIViewController {
     
 
     @IBAction func loginButtonPressed(_ sender: Any) {
-        // получаем текст логина
-        let login = loginTextField.text!
-        // получаем текст пароль
-        let password = passwordTextField.text!
-        
-        // проверяем верны ли они
-        if login == "admin" && password == "123456" {
+        if checkAuth() {
             print("успешная авторизация")
         } else {
             print("неуспешная авторизация")
@@ -89,6 +83,40 @@ class LoginFormController: UIViewController {
     
     @objc func hideKeyboard() {
         self.scrollView?.endEditing(true)
+    }
+    
+    //метод для возврата на этот контреллер через unwind segue
+    @IBAction func myUnwindAction(​​unwindSegue: UIStoryboardSegue){
+        print("myUnwindAction")
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let isUserAuthed = checkAuth()
+        if !isUserAuthed {
+            showPassError()
+        }
+        return isUserAuthed
+    }
+    
+    func checkAuth() -> Bool {
+        // получаем текст логина
+        let login = loginTextField.text!
+        // получаем текст пароль
+        let password = passwordTextField.text!
+        
+        // проверяем верны ли они
+        if login == "admin" && password == "123456" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func showPassError() {
+        let alert =  UIAlertController(title: "Error", message: "Wrong pass", preferredStyle: .alert)
+        let alertOKButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(alertOKButton)
+        present(alert, animated: true)
     }
     
 }
