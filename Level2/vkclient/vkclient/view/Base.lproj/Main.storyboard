@@ -122,12 +122,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.875" y="132.5"/>
+            <point key="canvasLocation" x="524" y="140"/>
         </scene>
-        <!--Table View Controller-->
+        <!--My Group List Controller-->
         <scene sceneID="78E-Jw-9d6">
             <objects>
-                <tableViewController id="oME-Gm-JzJ" sceneMemberID="viewController">
+                <tableViewController id="oME-Gm-JzJ" userLabel="My Group List Controller" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nof-h0-Urq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,6 +140,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="2qY-RO-Poo" kind="show" id="3os-es-gTE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -151,12 +154,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13R-Zd-RmP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2593" y="485"/>
+            <point key="canvasLocation" x="1838" y="468"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Other Group List Controller-->
         <scene sceneID="DVs-NC-FEG">
             <objects>
-                <tableViewController id="2qY-RO-Poo" sceneMemberID="viewController">
+                <tableViewController id="2qY-RO-Poo" userLabel="Other Group List Controller" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W50-mM-fhC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,12 +182,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlS-hZ-xgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3396" y="485"/>
+            <point key="canvasLocation" x="2290" y="468"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Friend List Controller-->
         <scene sceneID="7FB-Qo-88J">
             <objects>
-                <tableViewController id="8XF-sP-tWk" sceneMemberID="viewController">
+                <tableViewController id="8XF-sP-tWk" userLabel="Friend List Controller" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cJy-3Q-NgM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,6 +200,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="jNt-sW-saK" kind="show" id="zda-XR-ah6"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -208,12 +214,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9re-oE-z9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2593" y="-204"/>
+            <point key="canvasLocation" x="1838" y="-184"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Friends fotos Controller-->
         <scene sceneID="jb2-Od-o3M">
             <objects>
-                <collectionViewController id="jNt-sW-saK" sceneMemberID="viewController">
+                <collectionViewController id="jNt-sW-saK" userLabel="Friends fotos Controller" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NII-AP-FfS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -242,7 +248,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNq-2X-yo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3396" y="-204"/>
+            <point key="canvasLocation" x="2290" y="-184"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="49Q-ew-HAU">
@@ -279,7 +285,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QX5-46-nkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="-204"/>
+            <point key="canvasLocation" x="1368" y="-184"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="WmY-H9-QfQ">
@@ -298,7 +304,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iX3-Cr-vIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="485"/>
+            <point key="canvasLocation" x="1368" y="468"/>
         </scene>
     </scenes>
 </document>

@@ -54,14 +54,38 @@
 		52215B512007F6CF0002CEE2 /* vkclient */ = {
 			isa = PBXGroup;
 			children = (
+				74886CE02091CB25008B7290 /* controller */,
+				74886CDF2091CB18008B7290 /* view */,
+				74886CDE2091CB0C008B7290 /* model */,
 				52215B522007F6CF0002CEE2 /* AppDelegate.swift */,
-				52215B542007F6CF0002CEE2 /* LoginFormViewController.swift */,
-				52215B562007F6CF0002CEE2 /* Main.storyboard */,
 				52215B592007F6CF0002CEE2 /* Assets.xcassets */,
-				52215B5B2007F6CF0002CEE2 /* LaunchScreen.storyboard */,
 				52215B5E2007F6CF0002CEE2 /* Info.plist */,
 			);
 			path = vkclient;
+			sourceTree = "<group>";
+		};
+		74886CDE2091CB0C008B7290 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		74886CDF2091CB18008B7290 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				52215B5B2007F6CF0002CEE2 /* LaunchScreen.storyboard */,
+				52215B562007F6CF0002CEE2 /* Main.storyboard */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		74886CE02091CB25008B7290 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				52215B542007F6CF0002CEE2 /* LoginFormViewController.swift */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
