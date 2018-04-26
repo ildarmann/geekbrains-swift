@@ -1,16 +1,16 @@
 //
-//  SecondTableViewController.swift
+//  FirstTableTableViewController.swift
 //  weather
 //
-//  Created by Гюзель Маннанова on 04.01.2018.
+//  Created by Гюзель Маннанова on 03.01.2018.
 //  Copyright © 2018 mif. All rights reserved.
 //
 
 import UIKit
 
-class SecondTableViewController: UITableViewController {
-    let cellName = "tableCell2"
+class SelectedCitiesController: UITableViewController {
     let dataList1: [String] = ["Moscow", "Paris", "London"]
+    let dataList2: [String] = ["Samara", "Ufa"]
     let iconNames: [String] = ["sun", "rain", "greyFall"]
 
     override func viewDidLoad() {
@@ -32,21 +32,39 @@ class SecondTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataList1.count
+        if section == 0 {
+            return dataList1.count
+        } else {
+            return dataList2.count
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        if section == 0 {
+            return "section 1"
+        } else {
+            return "section 2"
+        }
     }
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName , for: indexPath) as! TableViewCell2
-        //cell.textLabel?.text = dataList1[indexPath.row]
-        cell.label1?.text = dataList1[indexPath.row]
-        cell.image1.image = UIImage(named: iconNames[indexPath.row])
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if indexPath.section == 0 {
+            cell.textLabel?.text = dataList1[indexPath.row]
+            cell.detailTextLabel?.text = String (indexPath.row)
+        } else {
+            cell.textLabel?.text = dataList2[indexPath.row]
+            cell.detailTextLabel?.text = String (indexPath.row)
+        }
+        cell.imageView?.image = UIImage(named: iconNames[indexPath.row])
+        
         return cell
     }
  

@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "CollectionViewCell"
 
-class CollectionViewController: UICollectionViewController {
+class WeatherInCityController: UICollectionViewController {
     let dataList: [String] = ["Moscow", "Paris", "London"]
 
     override func viewDidLoad() {

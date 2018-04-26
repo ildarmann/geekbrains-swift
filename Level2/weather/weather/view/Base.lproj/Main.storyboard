@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="838" y="-275"/>
         </scene>
-        <!--AllCities-->
+        <!--AllCities Controller-->
         <scene sceneID="RH4-0U-v1S">
             <objects>
-                <tableViewController id="q5r-ob-Jjc" userLabel="AllCities" customClass="SecondTableViewController" customModule="weather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="q5r-ob-Jjc" userLabel="AllCities Controller" customClass="AllCitiesController" customModule="weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7qf-5k-4uB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="3413" y="-661"/>
         </scene>
-        <!--SelectedCities-->
+        <!--SelectedCities  Controller-->
         <scene sceneID="qvk-dY-L91">
             <objects>
-                <tableViewController id="xDR-Fx-vpK" userLabel="SelectedCities" customClass="FirstTableTableViewController" customModule="weather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xDR-Fx-vpK" userLabel="SelectedCities  Controller" customClass="SelectedCitiesController" customModule="weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="J0w-2E-E5W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,10 +258,10 @@
             </objects>
             <point key="canvasLocation" x="2558" y="-274"/>
         </scene>
-        <!--WetherInCity-->
+        <!--WetherInCity  Controller-->
         <scene sceneID="z9b-Nd-mNI">
             <objects>
-                <collectionViewController id="4bX-z2-XOH" userLabel="WetherInCity" customClass="CollectionViewController" customModule="weather" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="4bX-z2-XOH" userLabel="WetherInCity  Controller" customClass="WeatherInCityController" customModule="weather" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fQK-6P-OXk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
