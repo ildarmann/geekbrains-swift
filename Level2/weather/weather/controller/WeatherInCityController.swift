@@ -8,19 +8,21 @@
 
 import UIKit
 
-private let reuseIdentifier = "CollectionViewCell"
+private let reuseIdentifier = "WeatherInCityCell"
 
 class WeatherInCityController: UICollectionViewController {
-    let dataList: [String] = ["Moscow", "Paris", "London"]
+    var cityProvider = City()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        // Register cell classes - убираем, т.к. он почему-то приводить к ошибке
+      // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -50,15 +52,16 @@ class WeatherInCityController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return dataList.count
+        return cityProvider.getSelectedCities().count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! WeatherInCityCell
     
         // Configure the cell
-        let label: UILabel = cell.viewWithTag(1) as! UILabel
-        label.text = dataList[indexPath.row]
+        cell.labelUp.text = "​30​​ C"
+        cell.image.image = UIImage(named: City.getIconNames()[indexPath.row % 3])
+        cell.labelDown.text = "​30.08.2017​​ 18:00"
         return cell
     }
 

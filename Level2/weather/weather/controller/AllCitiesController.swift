@@ -9,12 +9,13 @@
 import UIKit
 
 class AllCitiesController: UITableViewController {
-    let cellName = "tableCell2"
-    let dataList1: [String] = ["Moscow", "Paris", "London"]
-    let iconNames: [String] = ["sun", "rain", "greyFall"]
+    let cellName = "allCitiesCell"
+    let allCities: [String] = City.getAllCities()
+    let iconNames: [String] = City.getIconNames()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,15 +38,16 @@ class AllCitiesController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataList1.count
+        
+        return allCities.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName , for: indexPath) as! TableViewCell2
-        //cell.textLabel?.text = dataList1[indexPath.row]
-        cell.label1?.text = dataList1[indexPath.row]
-        cell.image1.image = UIImage(named: iconNames[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName , for: indexPath) as! AllCitiesCell
+        
+        cell.label1?.text = allCities[indexPath.row]
+        cell.image1.image = UIImage(named: iconNames[indexPath.row % 3])
 
         return cell
     }

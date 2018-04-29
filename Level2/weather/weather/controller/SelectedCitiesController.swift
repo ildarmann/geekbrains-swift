@@ -9,18 +9,25 @@
 import UIKit
 
 class SelectedCitiesController: UITableViewController {
-    let dataList1: [String] = ["Moscow", "Paris", "London"]
-    let dataList2: [String] = ["Samara", "Ufa"]
-    let iconNames: [String] = ["sun", "rain", "greyFall"]
+
+    let icons = City.getIconNames()
+    let cityProvider = City()
+    var cities: [String] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // хотим подгрузить данные из источника 1 раз, правильно ли это делать здесь?
+        cities = cityProvider.getSelectedCities()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,46 +35,60 @@ class SelectedCitiesController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return dataList1.count
-        } else {
-            return dataList2.count
-        }
-        
+        return cities.count
     }
     
+
+    /*
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-        if section == 0 {
-            return "section 1"
-        } else {
-            return "section 2"
-        }
-    }
+        return "section 2"
+    } */
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if indexPath.section == 0 {
-            cell.textLabel?.text = dataList1[indexPath.row]
-            cell.detailTextLabel?.text = String (indexPath.row)
-        } else {
-            cell.textLabel?.text = dataList2[indexPath.row]
-            cell.detailTextLabel?.text = String (indexPath.row)
-        }
-        cell.imageView?.image = UIImage(named: iconNames[indexPath.row])
+    
+        cell.textLabel?.text = cities[indexPath.row]
+        cell.detailTextLabel?.text = String (indexPath.row)
+
+        cell.imageView?.image = UIImage(named: icons[indexPath.row % 3])
         
         return cell
     }
  
+    
+    //метод для возврата на этот контреллер через unwind segue
+    @IBAction func addNewCity(​​unwindSegue: UIStoryboardSegue){
+        
+        guard ​​unwindSegue.identifier == "addCity" else {
+            return
+        }
+        
+        let sourceController = ​​unwindSegue.source as! AllCitiesController
+        if let selectedIndexPath = sourceController.tableView.indexPathForSelectedRow {
+            let selectedCity = sourceController.allCities[selectedIndexPath.row]
+            
+            if !cities.contains(selectedCity) { // не вставляем дубли
+                cityProvider.addSelected(selectedCity) // типа измениили в источнике
+                cities.append(selectedCity) // изменили локально на форме
+
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -77,17 +98,18 @@ class SelectedCitiesController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
+    
+    // Включаем возможность удаления строк слайдом
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            // Delete the city
+            cities.remove(at: indexPath.row)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        tableView.reloadData()
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
