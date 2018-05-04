@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="524" y="140"/>
+            <point key="canvasLocation" x="19" y="139"/>
         </scene>
         <!--My Group List Controller-->
         <scene sceneID="78E-Jw-9d6">
@@ -154,7 +154,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13R-Zd-RmP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="468"/>
+            <point key="canvasLocation" x="2689" y="522"/>
         </scene>
         <!--Other Group List Controller-->
         <scene sceneID="DVs-NC-FEG">
@@ -182,25 +182,52 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlS-hZ-xgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2290" y="468"/>
+            <point key="canvasLocation" x="3510" y="524"/>
         </scene>
         <!--Friend List Controller-->
         <scene sceneID="7FB-Qo-88J">
             <objects>
-                <tableViewController id="8XF-sP-tWk" userLabel="Friend List Controller" sceneMemberID="viewController">
+                <tableViewController id="8XF-sP-tWk" userLabel="Friend List Controller" customClass="FriendListController" customModule="vkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cJy-3Q-NgM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kSk-tG-dxI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendListCellID" id="kSk-tG-dxI" userLabel="Friend List Cell" customClass="FriendListCell" customModule="vkclient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kSk-tG-dxI" id="HXo-X4-fZt">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wcx-Z7-6WP">
+                                            <rect key="frame" x="10" y="5" width="35" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="XvI-4R-boD"/>
+                                                <constraint firstAttribute="width" constant="35" id="mfC-dF-dBW"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1v-6W-JgB">
+                                            <rect key="frame" x="53" y="8" width="259" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="wL0-uK-mjT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="h1v-6W-JgB" firstAttribute="leading" secondItem="wcx-Z7-6WP" secondAttribute="trailing" constant="8" id="ROR-0w-Rg4"/>
+                                        <constraint firstAttribute="trailing" secondItem="h1v-6W-JgB" secondAttribute="trailing" constant="8" id="VXL-aj-7QU"/>
+                                        <constraint firstItem="h1v-6W-JgB" firstAttribute="top" secondItem="HXo-X4-fZt" secondAttribute="top" constant="8" id="WhX-nt-kQS"/>
+                                        <constraint firstItem="wcx-Z7-6WP" firstAttribute="top" secondItem="HXo-X4-fZt" secondAttribute="top" constant="5" id="dhh-kZ-BfV"/>
+                                        <constraint firstItem="wcx-Z7-6WP" firstAttribute="leading" secondItem="HXo-X4-fZt" secondAttribute="leading" constant="10" id="fkg-Lh-5Vx"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="friendFoto" destination="wcx-Z7-6WP" id="ZvO-Jg-tsn"/>
+                                    <outlet property="friendName" destination="h1v-6W-JgB" id="IAv-SQ-uJH"/>
                                     <segue destination="jNt-sW-saK" kind="show" id="zda-XR-ah6"/>
                                 </connections>
                             </tableViewCell>
@@ -210,11 +237,11 @@
                             <outlet property="delegate" destination="8XF-sP-tWk" id="b1E-XM-nez"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QvL-oa-wkL"/>
+                    <navigationItem key="navigationItem" title="Friend List" id="QvL-oa-wkL"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9re-oE-z9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="-184"/>
+            <point key="canvasLocation" x="2688.75" y="-188.02816901408451"/>
         </scene>
         <!--Friends fotos Controller-->
         <scene sceneID="jb2-Od-o3M">
@@ -248,7 +275,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNq-2X-yo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2290" y="-184"/>
+            <point key="canvasLocation" x="3510" y="-185"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="49Q-ew-HAU">
@@ -285,7 +312,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QX5-46-nkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1368" y="-184"/>
+            <point key="canvasLocation" x="1809" y="-187"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="WmY-H9-QfQ">
@@ -304,7 +331,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iX3-Cr-vIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1368" y="468"/>
+            <point key="canvasLocation" x="1808" y="522"/>
         </scene>
     </scenes>
 </document>
