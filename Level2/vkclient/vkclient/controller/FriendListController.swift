@@ -46,11 +46,13 @@ class FriendListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: FRIEND_LIST_CELL_ID, for: indexPath) as! FriendListCell
 
         // Configure the cell...
-        cell.friendName.text = vkData.getMyFriends()[indexPath.row].name
-        cell.friendFoto.image = vkData.getFriendFotos()[indexPath.row]
+        let friend = vkData.getMyFriends()[indexPath.row]
+        cell.friendName.text = friend.name
+        cell.friendFoto.image = friend.foto
 
         return cell
     }
+    
     
 
     /*
@@ -88,14 +90,19 @@ class FriendListController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let destController = segue.destination as! FriendsFotosController
+        let sourceController = segue.source as! FriendListController
+        let selectedUserID = sourceController.tableView.indexPathForSelectedRow?.row
+        destController.friend = vkData.getMyFriends()[selectedUserID!]
     }
-    */
+    
 
 }

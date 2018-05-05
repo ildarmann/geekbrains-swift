@@ -17,6 +17,9 @@
 		741613F820990B4200DACD79 /* VkDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613F720990B4200DACD79 /* VkDataProvider.swift */; };
 		741613FA209CFBD000DACD79 /* FriendListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613F9209CFBD000DACD79 /* FriendListController.swift */; };
 		741613FC209CFD8A00DACD79 /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613FB209CFD8A00DACD79 /* FriendListCell.swift */; };
+		741613FE209D06D500DACD79 /* FriendsFotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613FD209D06D500DACD79 /* FriendsFotosController.swift */; };
+		74161400209D081B00DACD79 /* FriendsFotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613FF209D081B00DACD79 /* FriendsFotosCell.swift */; };
+		74161402209D9A0000DACD79 /* FriendFotoFioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74161401209D9A0000DACD79 /* FriendFotoFioCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		741613F720990B4200DACD79 /* VkDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkDataProvider.swift; sourceTree = "<group>"; };
 		741613F9209CFBD000DACD79 /* FriendListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListController.swift; sourceTree = "<group>"; };
 		741613FB209CFD8A00DACD79 /* FriendListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
+		741613FD209D06D500DACD79 /* FriendsFotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotosController.swift; sourceTree = "<group>"; };
+		741613FF209D081B00DACD79 /* FriendsFotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotosCell.swift; sourceTree = "<group>"; };
+		74161401209D9A0000DACD79 /* FriendFotoFioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFotoFioCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,8 @@
 				52215B5B2007F6CF0002CEE2 /* LaunchScreen.storyboard */,
 				52215B562007F6CF0002CEE2 /* Main.storyboard */,
 				741613FB209CFD8A00DACD79 /* FriendListCell.swift */,
+				741613FF209D081B00DACD79 /* FriendsFotosCell.swift */,
+				74161401209D9A0000DACD79 /* FriendFotoFioCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -99,6 +107,7 @@
 			children = (
 				52215B542007F6CF0002CEE2 /* LoginFormViewController.swift */,
 				741613F9209CFBD000DACD79 /* FriendListController.swift */,
+				741613FD209D06D500DACD79 /* FriendsFotosController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -176,9 +185,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				741613F820990B4200DACD79 /* VkDataProvider.swift in Sources */,
+				741613FE209D06D500DACD79 /* FriendsFotosController.swift in Sources */,
 				741613F420990AD600DACD79 /* VkUser.swift in Sources */,
+				74161400209D081B00DACD79 /* FriendsFotosCell.swift in Sources */,
 				52215B552007F6CF0002CEE2 /* LoginFormViewController.swift in Sources */,
 				741613FA209CFBD000DACD79 /* FriendListController.swift in Sources */,
+				74161402209D9A0000DACD79 /* FriendFotoFioCell.swift in Sources */,
 				741613F620990B1300DACD79 /* VkGroup.swift in Sources */,
 				741613FC209CFD8A00DACD79 /* FriendListCell.swift in Sources */,
 				52215B532007F6CF0002CEE2 /* AppDelegate.swift in Sources */,

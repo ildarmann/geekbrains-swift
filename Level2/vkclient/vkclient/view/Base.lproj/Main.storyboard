@@ -237,7 +237,7 @@
                             <outlet property="delegate" destination="8XF-sP-tWk" id="b1E-XM-nez"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friend List" id="QvL-oa-wkL"/>
+                    <navigationItem key="navigationItem" title="Friends" id="QvL-oa-wkL"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9re-oE-z9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,25 +246,67 @@
         <!--Friends fotos Controller-->
         <scene sceneID="jb2-Od-o3M">
             <objects>
-                <collectionViewController id="jNt-sW-saK" userLabel="Friends fotos Controller" sceneMemberID="viewController">
+                <collectionViewController id="jNt-sW-saK" userLabel="Friends fotos Controller" customClass="FriendsFotosController" customModule="vkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NII-AP-FfS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ke7-O7-GuK">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Rwj-4H-zhw">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="fioCell" id="f9C-sl-iSY" customClass="FriendFotoFioCell" customModule="vkclient" customModuleProvider="target">
+                                <rect key="frame" x="10" y="0.0" width="300" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2d-CC-nZF">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="s2d-CC-nZF" firstAttribute="top" secondItem="f9C-sl-iSY" secondAttribute="top" id="2GN-hC-JRL"/>
+                                    <constraint firstAttribute="bottom" secondItem="s2d-CC-nZF" secondAttribute="bottom" id="8uY-Ho-tu6"/>
+                                    <constraint firstItem="s2d-CC-nZF" firstAttribute="width" secondItem="f9C-sl-iSY" secondAttribute="width" id="OBk-my-PeG"/>
+                                    <constraint firstAttribute="trailing" secondItem="s2d-CC-nZF" secondAttribute="trailing" id="bPl-iv-8Lo"/>
+                                    <constraint firstItem="s2d-CC-nZF" firstAttribute="leading" secondItem="f9C-sl-iSY" secondAttribute="leading" id="pmx-4C-OnD"/>
+                                    <constraint firstItem="s2d-CC-nZF" firstAttribute="height" secondItem="f9C-sl-iSY" secondAttribute="height" id="tRb-4G-CxO"/>
+                                </constraints>
+                                <size key="customSize" width="300" height="25"/>
+                                <connections>
+                                    <outlet property="fio" destination="s2d-CC-nZF" id="BCo-ER-Laa"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FriendsFotosCellID" id="Rwj-4H-zhw" userLabel="Friends Fotos Cell" customClass="FriendsFotosCell" customModule="vkclient" customModuleProvider="target">
+                                <rect key="frame" x="85" y="35" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6wr-Nc-e84">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="6wr-Nc-e84" firstAttribute="leading" secondItem="Rwj-4H-zhw" secondAttribute="leading" id="0aO-68-0az"/>
+                                    <constraint firstItem="6wr-Nc-e84" firstAttribute="top" secondItem="Rwj-4H-zhw" secondAttribute="top" id="7dC-x4-Egg"/>
+                                    <constraint firstAttribute="trailing" secondItem="6wr-Nc-e84" secondAttribute="trailing" id="GeE-75-6kY"/>
+                                    <constraint firstAttribute="bottom" secondItem="6wr-Nc-e84" secondAttribute="bottom" id="dfy-9g-d4J"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="foto" destination="6wr-Nc-e84" id="4PT-5l-FEh"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -275,7 +317,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNq-2X-yo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3510" y="-185"/>
+            <point key="canvasLocation" x="3510" y="-185.91549295774649"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="49Q-ew-HAU">

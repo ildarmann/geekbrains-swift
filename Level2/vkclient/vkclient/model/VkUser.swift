@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class VkUser {
     var name: String
+    var id: Int
+    var foto: UIImage
     
-    init(_ name: String) {
+    init(_ id: Int, _ name: String, _ foto: UIImage) {
+        self.id = id
         self.name = name
+        self.foto = foto
     }
     
     
