@@ -7,12 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
 class VkGroup {
-    var name: String?
+    var id: Int
+    var name: String
+    var foto: UIImage
+    var memberCount: Int
     
-    init(_ name: String) {
+    init(_ id: Int, _ name: String, _ foto: UIImage, _ memberCount: Int) {
+        self.id = id
         self.name = name
+        self.foto = foto
+        self.memberCount = memberCount
     }
     
 }

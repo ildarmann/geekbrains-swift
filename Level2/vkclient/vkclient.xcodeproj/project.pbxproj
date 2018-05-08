@@ -20,6 +20,10 @@
 		741613FE209D06D500DACD79 /* FriendsFotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613FD209D06D500DACD79 /* FriendsFotosController.swift */; };
 		74161400209D081B00DACD79 /* FriendsFotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741613FF209D081B00DACD79 /* FriendsFotosCell.swift */; };
 		74161402209D9A0000DACD79 /* FriendFotoFioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74161401209D9A0000DACD79 /* FriendFotoFioCell.swift */; };
+		748F371E20A1FD8900A3CAF0 /* MyGroupListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F371D20A1FD8900A3CAF0 /* MyGroupListController.swift */; };
+		748F372020A1FDFF00A3CAF0 /* MyGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F371F20A1FDFF00A3CAF0 /* MyGroupListCell.swift */; };
+		748F372220A2092000A3CAF0 /* OtherGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F372120A2092000A3CAF0 /* OtherGroupListCell.swift */; };
+		748F372620A20B3A00A3CAF0 /* OtherGroupListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F372520A20B3A00A3CAF0 /* OtherGroupListController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		741613FD209D06D500DACD79 /* FriendsFotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotosController.swift; sourceTree = "<group>"; };
 		741613FF209D081B00DACD79 /* FriendsFotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotosCell.swift; sourceTree = "<group>"; };
 		74161401209D9A0000DACD79 /* FriendFotoFioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFotoFioCell.swift; sourceTree = "<group>"; };
+		748F371D20A1FD8900A3CAF0 /* MyGroupListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupListController.swift; sourceTree = "<group>"; };
+		748F371F20A1FDFF00A3CAF0 /* MyGroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupListCell.swift; sourceTree = "<group>"; };
+		748F372120A2092000A3CAF0 /* OtherGroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGroupListCell.swift; sourceTree = "<group>"; };
+		748F372520A20B3A00A3CAF0 /* OtherGroupListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGroupListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,8 @@
 				741613FB209CFD8A00DACD79 /* FriendListCell.swift */,
 				741613FF209D081B00DACD79 /* FriendsFotosCell.swift */,
 				74161401209D9A0000DACD79 /* FriendFotoFioCell.swift */,
+				748F371F20A1FDFF00A3CAF0 /* MyGroupListCell.swift */,
+				748F372120A2092000A3CAF0 /* OtherGroupListCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -108,6 +118,8 @@
 				52215B542007F6CF0002CEE2 /* LoginFormViewController.swift */,
 				741613F9209CFBD000DACD79 /* FriendListController.swift */,
 				741613FD209D06D500DACD79 /* FriendsFotosController.swift */,
+				748F371D20A1FD8900A3CAF0 /* MyGroupListController.swift */,
+				748F372520A20B3A00A3CAF0 /* OtherGroupListController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -188,11 +200,15 @@
 				741613FE209D06D500DACD79 /* FriendsFotosController.swift in Sources */,
 				741613F420990AD600DACD79 /* VkUser.swift in Sources */,
 				74161400209D081B00DACD79 /* FriendsFotosCell.swift in Sources */,
+				748F372220A2092000A3CAF0 /* OtherGroupListCell.swift in Sources */,
 				52215B552007F6CF0002CEE2 /* LoginFormViewController.swift in Sources */,
+				748F371E20A1FD8900A3CAF0 /* MyGroupListController.swift in Sources */,
 				741613FA209CFBD000DACD79 /* FriendListController.swift in Sources */,
+				748F372020A1FDFF00A3CAF0 /* MyGroupListCell.swift in Sources */,
 				74161402209D9A0000DACD79 /* FriendFotoFioCell.swift in Sources */,
 				741613F620990B1300DACD79 /* VkGroup.swift in Sources */,
 				741613FC209CFD8A00DACD79 /* FriendListCell.swift in Sources */,
+				748F372620A20B3A00A3CAF0 /* OtherGroupListController.swift in Sources */,
 				52215B532007F6CF0002CEE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

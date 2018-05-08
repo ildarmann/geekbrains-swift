@@ -11,14 +11,24 @@ import UIKit
 
 class VkDataProvider {
     
-    var myFriends: [VkUser] = [VkUser(0, "Иванов Василий Петрович", UIImage(named: "01d")!),
+    private var myFriends: [VkUser] = [VkUser(0, "Иванов Василий Петрович", UIImage(named: "01d")!),
                                VkUser(1, "Mr Y", UIImage(named: "01d")!),
                                VkUser(2, "Mr Z", UIImage(named: "01d")!)]
-    var friendsFotos: [[String]] = [["01d", "01d", "01d"],
+    private var friendsFotos: [[String]] = [["01d", "01d", "01d"],
                                     ["01d", "01d"],
                                     ["01d"]]
-    var myGroups: [VkGroup] = [VkGroup("Group 11"), VkGroup("Ku-ku group")]
-    var otherGroups: [VkGroup] = [VkGroup("2 Group"), VkGroup("new X3"), VkGroup("toyota drivers")]
+    
+    private var myGroups: [VkGroup] = [VkGroup(0, "Group 11", UIImage(named: "01d")!, 2),
+                                       VkGroup(1, "Ku-ku group", UIImage(named: "01d")!, 2)
+    ]
+    private var otherGroups: [VkGroup] = [VkGroup(0, "2 Group", UIImage(named: "01d")!, 101),
+                                          VkGroup(1, "new X3", UIImage(named: "01d")!, 24),
+                                          VkGroup(2, "toyota drivers", UIImage(named: "01d")!, 222)
+    ]
+
+    // -----------
+    
+    
     
     func getMyFriends() -> [VkUser]{
         return myFriends

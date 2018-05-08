@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class VkUser {
-    var name: String
     var id: Int
+    var name: String
     var foto: UIImage
     
     init(_ id: Int, _ name: String, _ foto: UIImage) {
