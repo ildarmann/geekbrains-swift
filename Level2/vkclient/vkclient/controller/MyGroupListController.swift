@@ -11,7 +11,7 @@ import UIKit
 private let MY_GROUP_LIST_CELL_ID = "MyGroupListCellID"
 
 class MyGroupListController: UITableViewController {
-    let vkDataProvider: VkDataProvider = VkDataProvider()
+    //let vkDataProvider: VkDataProvider = VkDataProvider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,11 @@ class MyGroupListController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -37,7 +42,7 @@ class MyGroupListController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return vkDataProvider.getMyGroups().count
+        return VkDataProvider.getMyGroups().count
     }
 
     
@@ -45,12 +50,19 @@ class MyGroupListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: MY_GROUP_LIST_CELL_ID, for: indexPath) as! MyGroupListCell
 
         // Configure the cell...
-        cell.foto.image = vkDataProvider.getMyGroups()[indexPath.row].foto
-        cell.name.text = vkDataProvider.getMyGroups()[indexPath.row].name
+        let myGroup = VkDataProvider.getMyGroups()[indexPath.row]
+        cell.foto.image = myGroup.foto
+        cell.name.text = myGroup.name
         
         return cell
     }
     
+    //метод для возврата на этот контреллер через unwind segue
+    @IBAction func unwindActionToMyGroupList(​​unwindSegue: UIStoryboardSegue){
+        print("myUnwindAction")
+        //let srcController: OtherGroupListController =  ​​unwindSegue.source as! OtherGroupListController
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -60,17 +72,21 @@ class MyGroupListController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            print("delete \(indexPath.row)")
+            let deletingGroup = VkDataProvider.getMyGroups()[indexPath.row]
+            VkDataProvider.deleteFromMyGroupList(deletingGroup.id)
+            
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
