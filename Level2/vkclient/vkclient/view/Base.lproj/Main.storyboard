@@ -195,17 +195,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="642-gT-HiX" userLabel="Group Search Text Field">
-                                <rect key="frame" x="8" y="72" width="304" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="kPR-8X-rrR"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0gS-yc-9Pl">
-                                <rect key="frame" x="0.0" y="110" width="320" height="409"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OtherGroupListCellID" id="VPk-0v-Pky" userLabel="Other Group List Cell" customClass="OtherGroupListCell" customModule="vkclient" customModuleProvider="target">
@@ -264,16 +255,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="642-gT-HiX" firstAttribute="leading" secondItem="glQ-vC-ij1" secondAttribute="leading" constant="8" id="2sn-bD-PzP"/>
+                            <constraint firstItem="0gS-yc-9Pl" firstAttribute="top" secondItem="glQ-vC-ij1" secondAttribute="top" id="6vS-Wi-No5"/>
                             <constraint firstItem="glQ-vC-ij1" firstAttribute="bottom" secondItem="0gS-yc-9Pl" secondAttribute="bottom" id="8aG-qh-EaA"/>
-                            <constraint firstItem="glQ-vC-ij1" firstAttribute="trailing" secondItem="642-gT-HiX" secondAttribute="trailing" constant="8" id="NTO-Vm-Ozf"/>
                             <constraint firstItem="glQ-vC-ij1" firstAttribute="trailing" secondItem="0gS-yc-9Pl" secondAttribute="trailing" id="ZUq-Um-3YR"/>
-                            <constraint firstItem="642-gT-HiX" firstAttribute="top" secondItem="glQ-vC-ij1" secondAttribute="top" constant="8" id="mbb-11-VlI"/>
                             <constraint firstItem="0gS-yc-9Pl" firstAttribute="leading" secondItem="glQ-vC-ij1" secondAttribute="leading" id="n0Z-z7-hh1"/>
-                            <constraint firstItem="0gS-yc-9Pl" firstAttribute="top" secondItem="642-gT-HiX" secondAttribute="bottom" constant="8" id="xxY-HA-S3d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="glQ-vC-ij1"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="0gS-yc-9Pl" id="yya-m0-3Jz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eWW-qD-4q8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Az0-3P-GdP" userLabel="Exit" sceneMemberID="exit"/>
